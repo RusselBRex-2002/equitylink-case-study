@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EquityLink — Case Study | The Sovereign Venture Vault</title>
+  <meta name="description"
+    content="Case study for EquityLink, a high-security venture ecosystem designed to connect elite investors with high-growth ventures through encrypted data rooms.">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⬡</text></svg>">
+  <style>
+/* ======================================================
+   EquityLink Case Study — Design System & Styles
+   ====================================================== */
+
+/* ── Google Fonts ─────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Public+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── Design Tokens ───────────────────────────────── */
+:root {
+  /* Palette — Primary */
+  --ebony: #121212;
+  --ebony-light: #1a1a1a;
+  --ebony-surface: #1e1e1e;
+  --ebony-card: #242424;
+  --ebony-border: #2e2d2a;
+  --gold: #ffd709;
+  --gold-dark: #887631;
+  --gold-light: #ffe44d;
+  --gold-glow: rgba(255, 215, 9, 0.12);
+  --gold-glow-strong: rgba(255, 215, 9, 0.25);
+
+  /* Palette — Tertiary & Neutral */
+  --tertiary: #00f1ff;
+  --tertiary-glow: rgba(0, 241, 255, 0.12);
+  --neutral: #7c7767;
+  --neutral-light: #9a9486;
+
+  /* Text */
+  --slate: #F2F2F7;
+  --slate-dim: #c0c0c8;
+  --text-primary: #F2F2F7;
+  --text-secondary: rgba(242, 242, 247, 0.7);
+  --text-muted: rgba(242, 242, 247, 0.45);
+  --danger: #FF4D4D;
+  --success: #00C48C;
+
+  /* Typography */
+  --font-headline: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-label: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font: var(--font-body);
+
+  /* 8pt Grid Spacing (normal — level 2) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-16: 128px;
+
+  /* Radii (moderate — level 2) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 40px rgba(255, 215, 9, 0.08);
+  --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 0.6s;
+
+  /* Layout */
+  --max-width: 1200px;
+  --max-width-narrow: 900px;
+}
+
+/* ── Reset & Base ────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Disable all animations and transitions globally for the static version */
+  animation: none !important;
+  transition: none !important;
+  transition-delay: 0s !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--ebony);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ebony);
+}
+
+/* ── Utility ─────────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+.section {
+  padding: var(--space-12) 0;
+  position: relative;
+}
+
+.section--alt {
+  background: var(--ebony-light);
+}
+
+/* ── Scroll Reveal (Neutralized) ─────────────────── */
+.reveal, 
+.reveal-left, 
+.reveal-right {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.stagger>* {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ── Section Headers ─────────────────────────────── */
+.section-label {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--gold);
+  display: inline-block;
+}
+
+.section-title {
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+/* ── Navigation (Static Mode) ────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(18, 18, 18, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(255, 215, 9, 0.1);
+  padding: var(--space-1) 0;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav-logo .logo-icon {
+  width: 32px;
+  height: 32px;
+  background: #FFD709;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--space-4);
+}
+
+.nav-links a {
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.nav-toggle,
+.scroll-indicator {
+  display: none !important;
+}
+
+/* ── Hero Section ────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 560px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: var(--gold-glow);
+  border: 1px solid rgba(255, 215, 9, 0.2);
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-3);
+}
+
+.hero-title {
+  font-family: var(--font-headline);
+  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-3);
+}
+
+.hero-title .highlight {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-5);
+}
+
+.hero-meta {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-meta-item .label {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero-meta-item .value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.hero-mockup {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-mockup-image {
+  width: 320px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-elevated);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-mockup-bg {
+  position: absolute;
+  width: 280px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.hero-mockup-bg.left {
+  left: -30px;
+  top: 40px;
+  transform: rotate(-8deg);
+}
+
+.hero-mockup-bg.right {
+  right: -30px;
+  top: 60px;
+  transform: rotate(8deg);
+}
+
+/* ── Problem / Solution / Impact Cards ───────────── */
+.psi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.psi-card {
+  background: var(--ebony-card);
+  border: 1px solid var(--ebony-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-4);
+}
+
+.psi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--gold-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+  font-size: 1.25rem;
+}
+
+.psi-card h3 {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+.psi-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Impact Stats Row ────────────────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.stat-item {
+  text-align: center;
+  padding: var(--space-4);
+  background: var(--ebony-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--ebony-border);
+}
+
+.stat-number {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: var(--space-1);
+}
+
+.stat-label {
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ── Design Process Timeline ─────────────────────── */
+.timeline {
+  position: relative;
+  padding: var(--space-5) 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), var(--ebony-border));
+}
+
+.timeline-item {
+  display: flex;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+  position: relative;
+}
+
+.timeline-dot {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  background: var(--ebony-card);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.timeline-content h3 {
+  font-family: var(--font-headline);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.timeline-content p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Research Insights Table ─────────────────────── */
+.insights-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: var(--space-4);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--ebony-border);
+}
+
+.insights-table thead th {
+  font-family: var(--font-label);
+  background: var(--ebony-card);
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--ebony-border);
+}
+
+.insights-table tbody td {
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--ebony-border);
+  background: var(--ebony-surface);
+  vertical-align: top;
+}
+
+/* ── Persona Cards ───────────────────────────────── */
+.personas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.persona-card {
+  background: var(--ebony-card);
+  border: 1px solid var(--ebony-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  position: relative;
+}
+
+.persona-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.persona-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FFD709;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ebony);
+}
+
+.persona-info h3 {
+  font-family: var(--font-headline);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.persona-info .role {
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.persona-detail {
+  margin-bottom: var(--space-2);
+}
+
+.persona-detail .detail-label {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.persona-detail p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── User Flow ───────────────────────────────────── */
+.user-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-top: var(--space-8);
+  overflow-x: auto;
+  padding: var(--space-3) 0;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.flow-node {
+  background: var(--ebony-card);
+  border: 1px solid var(--ebony-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-2);
+  text-align: center;
+  min-width: 160px;
+}
+
+.flow-node .flow-icon {
+  font-size: 1.75rem;
+  margin-bottom: 8px;
+}
+
+.flow-node .flow-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.flow-arrow {
+  color: var(--gold);
+  font-size: 1.25rem;
+  padding: 0 var(--space-1);
+  flex-shrink: 0;
+}
+
+/* ── Storyboard ──────────────────────────────────── */
+.storyboard-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.story-card {
+  background: var(--ebony-card);
+  border: 1px solid var(--ebony-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+}
+
+.story-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #FFD709;
+  color: var(--ebony);
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+
+.story-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Design System Showcase ──────────────────────── */
+.ds-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.ds-card {
+  background: var(--ebony-card);
+  border: 1px solid var(--ebony-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.ds-card h3 {
+  font-family: var(--font-headline);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.color-swatches {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.swatch-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin: 0 auto 6px auto;
+  border: 2px solid var(--ebony-border);
+}
+
+.swatch-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.type-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.type-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.type-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  min-width: 60px;
+  font-family: monospace;
+}
+
+.type-sample-h1 {
+  font-family: var(--font-headline);
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.type-sample-h2 {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.type-sample-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.type-sample-caption {
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Component Samples */
+.component-samples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sample-btn {
+  font-family: var(--font-label);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 12px 24px;
+  border-radius: var(--radius-xl);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.sample-btn--primary {
+  background: #FFD709;
+  color: var(--ebony);
+}
+
+.sample-btn--ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+
+.sample-badge {
+  font-family: var(--font-label);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.wcag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(0, 196, 140, 0.08);
+  border: 1px solid rgba(0, 196, 140, 0.2);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--success);
+  margin-top: var(--space-2);
+}
+
+/* ── Mockup Gallery ──────────────────────────────── */
+.mockup-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.mockup-item {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.mockup-item img {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  object-position: top;
+}
+
+.mockup-caption {
+  padding: var(--space-2) var(--space-3);
+  background: linear-gradient(to top, var(--ebony-card), transparent);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: var(--space-6);
+}
+
+.mockup-caption h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mockup-caption p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ── Iterations / Feedback ───────────────────────── */
+.feedback-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.feedback-card {
+  background: var(--ebony-card);
+  border: 1px solid var(--ebony-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.feedback-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: var(--space-1);
+}
+
+.feedback-before .feedback-label {
+  color: var(--danger);
+}
+
+.feedback-after .feedback-label {
+  color: var(--success);
+}
+
+.feedback-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1.5rem;
+  padding-top: var(--space-4);
+}
+
+.feedback-quote {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--gold);
+  margin-bottom: var(--space-2);
+}
+
+/* ── Footer ──────────────────────────────────────── */
+.footer {
+  padding: var(--space-8) 0 var(--space-5);
+  border-top: 1px solid var(--ebony-border);
+  text-align: center;
+}
+
+.footer-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+}
+
+.footer-brand .highlight {
+  color: var(--gold);
+}
+
+.footer p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto var(--space-3);
+  line-height: 1.7;
+}
+
+.footer-line {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 1024px) {
+  .mockup-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .storyboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .psi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-8) 0;
+  }
+
+  .hero .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-meta {
+    justify-content: center;
+  }
+
+  .hero-mockup-bg {
+    display: none;
+  }
+
+  .hero-mockup-image {
+    width: 260px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .personas-grid,
+  .ds-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .storyboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mockup-gallery {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-card {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-arrow {
+    transform: rotate(90deg);
+    padding-top: 0;
+  }
+
+  .timeline::before {
+    left: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .storyboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 0 var(--space-2);
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Fintech Case Study 2026</div>
+        <h1 class="hero-title">
+          <span class="highlight">EquityLink</span><br>
+          The Sovereign<br>Venture Vault
+        </h1>
+        <p class="hero-description">
+          A high-security venture ecosystem designed to connect elite investors with high-growth ventures
+          through encrypted data rooms and sovereign verification protocols.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="label">Role</span>
+            <span class="value">UI UX Designer</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="label">Timeline</span>
+            <span class="value">2 Days</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="label">Tools</span>
+            <span class="value">Google Stitch, Figma</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="label">Platform</span>
+            <span class="value">Mobile-first</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-mockup">
+        <img src="UI Screens/My Profile.png" alt="EquityLink Strategic Profile" class="hero-mockup-bg left">
+        <img src="UI Screens/Investor Dashboard.png" alt="EquityLink Opportunity Feed" class="hero-mockup-image">
+        <img src="UI Screens/Document Vault.png" alt="EquityLink Secure Vault" class="hero-mockup-bg right">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">The Challenge</span>
+        <h2 class="section-title">Problem, Solution & Impact</h2>
+      </div>
+
+      <div class="psi-grid stagger reveal">
+        <div class="psi-card" style="--i:0">
+          <div class="psi-icon">🔒</div>
+          <h3>The Problem</h3>
+          <p>High-tier venture capital deals often suffer from fragmented communication, insecure document sharing, and
+            a lack of verified liquidity. Founders struggle to find strategic partners, while investors are wary of
+            unvetted opportunities and data leaks.</p>
+        </div>
+        <div class="psi-card" style="--i:1">
+          <div class="psi-icon">⚡</div>
+          <h3>The Solution</h3>
+          <p>A centralized, <strong>end-to-end encrypted terminal</strong> that handles everything from identity
+            verification and portfolio validation to secure data room access and deal negotiation. EquityLink provides a
+            "Sovereign Vault" for every venture.</p>
+        </div>
+        <div class="psi-card" style="--i:2">
+          <div class="psi-icon">🚀</div>
+          <h3>The Impact</h3>
+          <p><strong>Streamlined Deal Flow:</strong> Automated verification accelerates the partnership process.
+            <strong>Absolute Security:</strong> 100% encrypted data rooms ensure IP protection. <strong>Targeted
+              Matches:</strong> A zero-noise environment for serious, vetted deal-making.
+          </p>
+        </div>
+      </div>
+
+      <div class="stats-row stagger reveal">
+        <div class="stat-item" style="--i:0">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Encrypted Data & Communications</div>
+        </div>
+        <div class="stat-item" style="--i:1">
+          <div class="stat-number">40%</div>
+          <div class="stat-label">Faster Deal Closure</div>
+        </div>
+        <div class="stat-item" style="--i:2">
+          <div class="stat-number">Zero</div>
+          <div class="stat-label">Unvetted Pitch Noise</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="process">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Methodology</span>
+        <h2 class="section-title">Design Process</h2>
+        <p class="section-subtitle">A systematic approach to building trust through interface design, balancing rigorous
+          security requirements with a seamless user experience.</p>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item" style="--i:0">
+          <div class="timeline-dot">👥</div>
+          <div class="timeline-content">
+            <h3>Empathize</h3>
+            <p>Interviewed elite VCs and venture founders to deeply understand their pain points around security,
+              privacy, and deal-flow discovery.</p>
+          </div>
+        </div>
+        <div class="timeline-item" style="--i:1">
+          <div class="timeline-dot">🛡️</div>
+          <div class="timeline-content">
+            <h3>Define</h3>
+            <p>Synthesized findings to establish core security requirements, identifying the need for sovereign
+              verification and end-to-end encrypted data rooms.</p>
+          </div>
+        </div>
+        <div class="timeline-item" style="--i:2">
+          <div class="timeline-dot">⚡</div>
+          <div class="timeline-content">
+            <h3>Ideate</h3>
+            <p>Mapped out deal-flow optimization concepts, focusing on "Ghost Mode" for privacy and automated liquidity
+              verification protocols.</p>
+          </div>
+        </div>
+        <div class="timeline-item" style="--i:3">
+          <div class="timeline-dot">📄</div>
+          <div class="timeline-content">
+            <h3>Prototype</h3>
+            <p>Developed high-fidelity mockups featuring a premium dark theme, establishing an interface that conveys
+              institutional trust and modern functionality.</p>
+          </div>
+        </div>
+        <div class="timeline-item" style="--i:4">
+          <div class="timeline-dot">✅</div>
+          <div class="timeline-content">
+            <h3>Test</h3>
+            <p>Conducted rigorous usability and security audits with target users, refining the platform based on
+              feedback regarding data room transparency.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="research">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Discovery</span>
+        <h2 class="section-title">User Research &amp; Analysis</h2>
+        <p class="section-subtitle">Insights gathered from interviewing high-net-worth investors and fast-growing
+          venture founders.</p>
+      </div>
+
+      <div class="reveal">
+        <table class="insights-table">
+          <thead>
+            <tr>
+              <th>Key Insight</th>
+              <th>Design Opportunity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="insight-icon">🔒</span> <strong>Privacy is Paramount:</strong> Investors often want to
+                browse deals without revealing their identity until interest is mutual.</td>
+              <td><strong>Ghost Mode:</strong> Allow verified users to browse opportunities anonymously, revealing their
+                profile only upon a mutual connection.</td>
+            </tr>
+            <tr>
+              <td><span class="insight-icon">🗄️</span> <strong>Verification Friction:</strong> Manual proof-of-funds
+                checks are slow and expose sensitive banking details unnecessarily.</td>
+              <td><strong>Automated Validation:</strong> Create a secure, automated integration to validate liquidity
+                and issue a "Verified Investor" badge.</td>
+            </tr>
+            <tr>
+              <td><span class="insight-icon">⚠️</span> <strong>Fragmented Tools:</strong> Traditional email and generic
+                data rooms are insecure and break the deal flow.</td>
+              <td><strong>Sovereign & Unified Terminal:</strong> Centralize discovery, secure document viewing, and
+                encrypted negotiation in a single ecosystem.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="personas">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Users</span>
+        <h2 class="section-title">User Personas</h2>
+      </div>
+
+      <div class="personas-grid stagger">
+        <div class="persona-card reveal-left" style="--i:0">
+          <div class="persona-header">
+            <div class="persona-avatar">R</div>
+            <div class="persona-info">
+              <h3>Russel</h3>
+              <span class="role">Verified Investor</span>
+            </div>
+          </div>
+          <div class="persona-detail">
+            <div class="detail-label">Quote</div>
+            <p><em>"I need to deploy capital into high-growth ventures without the noise of unvetted pitches."</em></p>
+          </div>
+          <div class="persona-detail">
+            <div class="detail-label">Goals</div>
+            <p>Access vetted deal flows and conduct due diligence in a highly secure environment.</p>
+          </div>
+          <div class="persona-detail">
+            <div class="detail-label">Pain Points</div>
+            <p>Identity exposure to unqualified founders and incredibly slow manual verification processes.</p>
+          </div>
+        </div>
+        <div class="persona-card reveal-right" style="--i:1">
+          <div class="persona-header">
+            <div class="persona-avatar">E</div>
+            <div class="persona-info">
+              <h3>Elena</h3>
+              <span class="role">Venture Founder</span>
+            </div>
+          </div>
+          <div class="persona-detail">
+            <div class="detail-label">Quote</div>
+            <p><em>"Raising Series A is a full-time job. I need a platform that streamlines the process."</em></p>
+          </div>
+          <div class="persona-detail">
+            <div class="detail-label">Goals</div>
+            <p>Secure strategic capital quickly while ensuring absolute protection of proprietary IP.</p>
+          </div>
+          <div class="persona-detail">
+            <div class="detail-label">Pain Points</div>
+            <p>Managing fragmented legal documents and wasting time on unqualified or unverified leads.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="flow">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Journey</span>
+        <h2 class="section-title">User Flow</h2>
+      </div>
+
+      <div class="user-flow reveal">
+        <div class="flow-step">
+          <div class="flow-node">
+            <div class="flow-icon">👥</div>
+            <div class="flow-label">Onboarding</div>
+          </div>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-node">
+            <div class="flow-icon">🛡️</div>
+            <div class="flow-label">Verification</div>
+          </div>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-node">
+            <div class="flow-icon">🔍</div>
+            <div class="flow-label">Discovery</div>
+          </div>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-node">
+            <div class="flow-icon">🔐</div>
+            <div class="flow-label">Data Room</div>
+          </div>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-node">
+            <div class="flow-icon">💬</div>
+            <div class="flow-label">Negotiation</div>
+          </div>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-node">
+            <div class="flow-icon">✅</div>
+            <div class="flow-label">Deal Closure</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="storyboard">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Narrative</span>
+        <h2 class="section-title">Storyboard</h2>
+        <p class="section-subtitle">The journey of a secure deal within the Sovereign Vault.</p>
+      </div>
+
+      <div class="storyboard-grid stagger reveal">
+        <div class="story-card" style="--i:0">
+          <div class="story-number">1</div>
+          <p><strong>Secure Entry:</strong> Elena creates her venture profile and uploads sensitive, proprietary IP
+            documents to the highly encrypted vault.</p>
+        </div>
+        <div class="story-card" style="--i:1">
+          <div class="story-number">2</div>
+          <p><strong>Vetted Match:</strong> Russel, holding a Verified Investor status, discovers Elena's venture via a
+            filtered, high-signal search.</p>
+        </div>
+        <div class="story-card" style="--i:2">
+          <div class="story-number">3</div>
+          <p><strong>Access Request:</strong> Russel initiates a data room request under Ghost Mode, safely signaling
+            his verified liquidity score.</p>
+        </div>
+        <div class="story-card" style="--i:3">
+          <div class="story-number">4</div>
+          <p><strong>Secure Review:</strong> Elena grants access. Russel reviews the AES-256 encrypted, dynamically
+            watermarked financial documents.</p>
+        </div>
+        <div class="story-card" style="--i:4">
+          <div class="story-number">5</div>
+          <p><strong>Encrypted Closing:</strong> They negotiate terms via the platform's encrypted chat terminal and
+            sign the deal sheet within the sovereign ecosystem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="design-system">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Foundation</span>
+        <h2 class="section-title">Design Systems</h2>
+        <p class="section-subtitle">Built to convey institutional trust, employing a high-contrast dark mode with
+          primary vibrant accents.</p>
+      </div>
+
+      <div class="ds-grid stagger reveal">
+        <div class="ds-card" style="--i:0">
+          <h3>Color Palette</h3>
+          <div class="color-swatches">
+            <div class="swatch">
+              <div class="swatch-circle" style="background: #FFD709;"></div>
+              <div class="swatch-label">Primary Yellow</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-circle" style="background: #F2F2F7;"></div>
+              <div class="swatch-label">Secondary Light</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-circle" style="background: #121212;"></div>
+              <div class="swatch-label">Tertiary Dark</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-circle" style="background: #0A0A0A; border-color: #3a3a3a;"></div>
+              <div class="swatch-label">Neutral Black</div>
+            </div>
+          </div>
+          <div class="wcag-badge">✓ Enterprise Security Standard Aesthetics</div>
+        </div>
+
+        <!-- <div class="ds-card" style="--i:1">
+          <h3>Typography</h3>
+          <div class="type-preview">
+            <div class="type-row">
+              <span class="type-sample-h1">Sovereign Vault</span>
+            </div>
+            <div class="type-row">
+              <span class="type-sample-h2">Encrypted Security</span>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="ds-card">
+          <h3>Typography</h3>
+          <div class="type-preview">
+            <div class="type-row">
+              <span class="type-label">Manrope / H1</span>
+              <span class="type-sample-h1">Sovereign Vault</span>
+            </div>
+            <div class="type-row">
+              <span class="type-label">Metropolis / H2</span>
+              <span class="type-sample-h2">Encrypted Security</span>
+            </div>
+            <div class="type-row">
+              <span class="type-label">Inter / Body</span>
+              <span class="type-sample-body">Enterprise-grade encryption for all data handling.</span>
+            </div>
+            <div class="type-row">
+              <span class="type-label">Inter / Caption</span>
+              <span class="type-sample-caption">VERIFIED INVESTOR STATUS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-card">
+          <h3>Components</h3>
+          <div class="component-samples">
+            <!-- Buttons -->
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <button class="sample-btn sample-btn--primary"
+                style="background-color: #FFD709; color: #000; border: none;">✦ Secure Access</button>
+              <button class="sample-btn sample-btn--ghost" style="border-color: #FFD709;">Data Room
+                →</button>
+            </div>
+            <!-- Badges -->
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px;">
+              <span class="sample-badge sample-badge--verified"
+                style="background-color: rgba(255, 215, 9, 0.1); color: #FFD709; border-color: #FFD709;">✓ Verified
+                Funds</span>
+              <span class="sample-badge sample-badge--success"
+                style="background-color: rgba(255, 255, 255, 0.1); color: #fff;">◉ AES-256 Active</span>
+            </div>
+            <!-- Input & Toggle -->
+            <!-- Search Component (Updated) -->
+            <div style="margin-top: 24px;">
+              <div
+                style="font-size: 0.65rem; color: #8E8E93; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; letter-spacing: 1px;">
+                Search Terminal</div>
+              <div style="position: relative; width: 100%;">
+                <span
+                  style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #8E8E93; pointer-events: none; display: flex; align-items: center; justify-content: center;">
+                  <svg width="15" height="15" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M16.6 18L10.3 11.7C9.8 12.1 9.225 12.4167 8.575 12.65C7.925 12.8833 7.23333 13 6.5 13C4.68333 13 3.14583 12.3708 1.8875 11.1125C0.629167 9.85417 0 8.31667 0 6.5C0 4.68333 0.629167 3.14583 1.8875 1.8875C3.14583 0.629167 4.68333 0 6.5 0C8.31667 0 9.85417 0.629167 11.1125 1.8875C12.3708 3.14583 13 4.68333 13 6.5C13 7.23333 12.8833 7.925 12.65 8.575C12.4167 9.225 12.1 9.8 11.7 10.3L18 16.6L16.6 18ZM6.5 11C7.75 11 8.8125 10.5625 9.6875 9.6875C10.5625 8.8125 11 7.75 11 6.5C11 5.25 10.5625 4.1875 9.6875 3.3125C8.8125 2.4375 7.75 2 6.5 2C5.25 2 4.1875 2.4375 3.3125 3.3125C2.4375 4.1875 2 5.25 2 6.5C2 7.75 2.4375 8.8125 3.3125 9.6875C4.1875 10.5625 5.25 11 6.5 11Z"
+                      fill="currentColor" />
+                  </svg>
+                </span>
+                <input type="text" placeholder="Search by asset name or ticker..."
+                  style="width: 100%; background: transparent; border: 2px solid rgba(255, 255, 255, 0.08); border-radius: 999px; padding: 16px 16px 16px 42px; color: #fff; font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; outline: none;"
+                  onfocus="this.style.borderColor='#FFD709'; this.parentElement.querySelector('span').style.color='#FFD709'"
+                  onblur="this.style.borderColor='rgba(255, 255, 255, 0.08)'; this.parentElement.querySelector('span').style.color='#8E8E93'">
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: 16px;">
+              <div
+                style="width: 36px; height: 20px; background: #FFD709; border-radius: 10px; position: relative; cursor: pointer;">
+                <div
+                  style="width: 16px; height: 16px; background: #000; border-radius: 50%; position: absolute; right: 2px; top: 2px;">
+                </div>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 700;">Stealth Mode</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-card" style="--i:3">
+          <h3>Data Room Card</h3>
+          <div
+            style="background: #1C1C1E; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 24px;">
+            <span
+              style="font-family: var(--font-body); font-size: 12px; font-weight: 600; color: #FFD709; text-transform: uppercase; letter-spacing: 2px; border: 1px solid rgba(255, 255, 255, 0.1); padding: 2px 8px; border-radius: 4px; display: inline-block;">Series
+              A • Active</span>
+            <h1 style="font-family: var(--font-headline); font-size: 2rem; font-weight: 700; margin: 8px 0 4px 0;">
+              Green-Logistics Expansion</h1>
+            <p style="font-size: 0.8rem; color: #8E8E93; margin-bottom: 24px; line-height: 1.5;">Scaling zero-emission
+              cold-chain delivery systems across the Nordic corridor.</p>
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 16px; border-radius: 16px; margin-bottom: 8px;">
+              <p
+                style="font-size: 10px; color: #8E8E93; font-weight: 700; text-transform: uppercase; margin-bottom: 8px;">
+                Target Capital</p>
+              <p style="font-size: 1.5rem; font-weight: 900; color: #FFD709; line-height: 1;">$1.2M Required</p>
+              <div
+                style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 999px; margin-top: 8px; overflow: hidden;">
+                <div style="width: 65%; height: 100%; background: #FFD709;"></div>
+              </div>
+            </div>
+            <div
+              style="background: #FFD709; padding: 16px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <p
+                  style="font-size: 10px; color: rgba(0, 0, 0, 0.6); font-weight: 700; text-transform: uppercase; margin-bottom: 8px;">
+                  ROI Projection</p>
+                <p style="font-size: 1.25rem; font-weight: 900; color: black; line-height: 1;">14.5% Y1</p>
+              </div>
+              <button
+                style="padding: 10px 24px; background: black; color: white; border-radius: 999px; font-size: 12px; font-weight: 700; border: none; cursor: pointer;">Invest</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="mockups">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Visual Design</span>
+        <h2 class="section-title">High-Fidelity Mockups</h2>
+        <p class="section-subtitle">A deep dive into the core interface screens, featuring high-contrast enterprise
+          design.</p>
+      </div>
+
+      <div class="mockup-gallery stagger reveal">
+        <div class="mockup-item" style="--i:0">
+          <img src="UI Screens/Investor Dashboard.png" alt="Investor Dashboard" loading="lazy">
+          <div class="mockup-caption">
+            <h4>Investor Dashboard</h4>
+            <p>Real-time deal flow with ROI projections.</p>
+          </div>
+        </div>
+        <div class="mockup-item" style="--i:1">
+          <img src="UI Screens/My Profile.png" alt="My Profile" loading="lazy">
+          <div class="mockup-caption">
+            <h4>My Profile</h4>
+            <p>Privacy-first identity and liquidity management.</p>
+          </div>
+        </div>
+        <div class="mockup-item" style="--i:2">
+          <img src="UI Screens/Document Vault.png" alt="Secure Data Room" loading="lazy">
+          <div class="mockup-caption">
+            <h4>Secure Data Room</h4>
+            <p>Watermarked, time-limited document access.</p>
+          </div>
+        </div>
+        <div class="mockup-item" style="--i:3">
+          <img src="UI Screens/Venture Creation step 2.png" alt="Automated Verification" loading="lazy">
+          <div class="mockup-caption">
+            <h4>Automated Verification</h4>
+            <p>Secure proof-of-funds validation process.</p>
+          </div>
+        </div>
+        <div class="mockup-item" style="--i:4">
+          <img src="UI Screens/Messages Dashboard.png" alt="Messages Dashboard" loading="lazy">
+          <div class="mockup-caption">
+            <h4>Messages Dashboard</h4>
+            <p>Chat with investors securely without identity exposure.</p>
+          </div>
+        </div>
+        <div class="mockup-item" style="--i:5">
+          <img src="UI Screens/Encrypted Chat.png" alt="Encrypted Chat" loading="lazy">
+          <div class="mockup-caption">
+            <h4>Encrypted Chat</h4>
+            <p>Secure chat terminal and digital term sheets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="feedback">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Iteration</span>
+        <h2 class="section-title">User Feedback &amp; Iterations</h2>
+        <p class="section-subtitle">Insights from usability testing drove critical updates to privacy communications.
+        </p>
+      </div>
+
+      <div class="feedback-grid stagger reveal">
+        <div class="feedback-card" style="--i:0">
+          <div class="feedback-before">
+            <div class="feedback-label">Initial Friction</div>
+            <p class="feedback-quote">"I'm hesitant to click 'Request Access' because I don't know if they'll see my
+              full bank statements immediately."</p>
+            <p>Users found the "Data Room Request" process ambiguous. They weren't sure what information was being
+              shared with the founder.</p>
+          </div>
+          <div class="feedback-arrow">→</div>
+          <div class="feedback-after">
+            <div class="feedback-label">The Iteration</div>
+            <p>Introduced a <strong>"Ghost Mode" status indicator</strong> explicitly listing what is shared
+              (Verification Badge) vs. what is hidden (Name, Contact). Resulted in a <strong>65% increase</strong> in
+              data room requests.</p>
+          </div>
+        </div>
+
+        <div class="feedback-card" style="--i:1">
+          <div class="feedback-before">
+            <div class="feedback-label">Initial Friction</div>
+            <p class="feedback-quote">"I need to know these documents can't just be downloaded and forwarded."</p>
+            <p>Founders were concerned about IP leakage even after granting access to verified investors.</p>
+          </div>
+          <div class="feedback-arrow">→</div>
+          <div class="feedback-after">
+            <div class="feedback-label">The Iteration</div>
+            <p>Implemented prominent <strong>dynamic watermarking</strong> overlays with the viewer's ID and timestamp
+              on all documents within the Data Room to deter leaks and reassure founders.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">Equity<span class="highlight" style="color: #FFD709;">Link</span></div>
+      <p>Building the future of secure venture capital. Designed for the sovereign era of deal-making.</p>
+      <div class="footer-line">Case Study by Russel · 2026</div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
